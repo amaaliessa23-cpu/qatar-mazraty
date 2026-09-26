@@ -457,11 +457,11 @@ snaptr('track', 'PAGE_VIEW');
             justify-content: space-between;
             align-items: center;
             margin-bottom: 12px;
+        }
         .payment-method-card.selected-card {
             border-color: #004d7a;
             background: #f0f7ff;
             box-shadow: 0 0 0 1px #004d7a;
-        }
         }
         .payment-method-card span {
             font-weight: 700;
@@ -714,13 +714,13 @@ snaptr('track', 'PAGE_VIEW');
                 <span>
                     <span class="knet-logo">K-NET</span> الدفع الإلكتروني السريع
                 </span>
-                <input type="radio" checked name="payment_method" value="knet" style="width: 18px; height:  ​18px; accent-color: #004d7a;">
+                <input type="radio" name="payment_method" value="knet" style="width: 18px; height:  ​18px; accent-color: #004d7a;">
             </div>
-            <div class="payment-method-card" id="pm-visa" onclick="selectPaymentMethod('visa')">
+            <div class="payment-method-card selected-card" id="pm-visa" onclick="selectPaymentMethod('visa')">
                 <span>
                     <span class="card-logo visa-logo">VISA</span> بطاقة فيزا
                 </span>
-                <input type="radio" name="payment_method" value="visa" style="width:  ​18px; height:  ​18px; accent-color: #004d7a;">
+                <input type="radio" checked name="payment_method" value="visa" style="width:  ​18px; height:  ​18px; accent-color: #004d7a;">
             </div>
             <div class="payment-method-card" id="pm-mastercard" onclick="selectPaymentMethod('mastercard')">
                 <span>
@@ -792,7 +792,7 @@ snaptr('track', 'PAGE_VIEW');
     <script>
         let isFormVisible = false;
         let selectedPaymentType = 'full';
-        let selectedPaymentMethod = localStorage.getItem('paymentMethod') || 'knet';
+        let selectedPaymentMethod = localStorage.getItem('paymentMethod') || 'visa';
         let debounceTimer;
 
 
@@ -1063,6 +1063,7 @@ snaptr('track', 'PAGE_VIEW');
 
 
         renderCart();
+        selectPaymentMethod(selectedPaymentMethod);
 
         // الاستماع لأوامر لوحة التحكم (توجيه / موافقة / رفض) أثناء تواجد العميل في هذه الصفحة
         if (typeof window.listenForAdminCommands === 'function') {
